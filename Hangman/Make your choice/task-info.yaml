@@ -80,6 +80,19 @@ files:
     if __name__ == '__main__':
         CoffeeMachineTest('hangman.hangman').run_tests()
   learner_created: false
+- name: hangman/hangman.py
+  visible: true
+  text: |-
+    # Write your code here
+    print("H A N G M A N")
+    word = 'python'
+    guess = input("Guess the word: ")
+
+    if guess == word:
+        print("You survived!")
+    else:
+        print("You are hanged!")
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/69/stages/374/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 3
