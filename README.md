@@ -1,2 +1,0 @@
-# Hangman
- Game The Hangman
