@@ -281,6 +281,61 @@ files:
     if __name__ == '__main__':
         CoffeeMachineTest('hangman.hangman').run_tests()
   learner_created: false
+- name: hangman/hangman.py
+  visible: true
+  text: |-
+    import random
+    print("H A N G M A N\n")
+    word_list = ['python', 'java', 'kotlin', 'javascript']
+    word = random.choice(word_list)
+    hangman = ['-' for _ in range(0, len(word))]
+    print(''.join(hangman))
+
+    def guessword(count= 0):
+        while count < 7:
+            guess = input("Input a letter: ")
+            if guess not in hangman:
+                if guess in word:
+                    print()
+                    for i in range(0, len(word)):
+                        if guess == word[i]:
+                            hangman.pop(i)
+                            hangman.insert(i, guess)
+                    print(''.join(hangman))
+                    if ''.join(hangman) == word:
+                        print('''You guessed the word!\nYou survived!''')
+                        break
+                else:
+                    count += 1
+                    print("No such letter in the word\n")
+                    print(''.join(hangman))
+            else:
+                count += 1
+                print("No improvements\n")
+                print(''.join(hangman))
+        else:
+            guess = input("Input a letter: ")
+            if guess not in hangman:
+                if guess in word:
+                    print()
+                    for i in range(0, len(word)):
+                        if guess == word[i]:
+                            hangman.pop(i)
+                            hangman.insert(i, guess)
+                    print(''.join(hangman))
+                    if ''.join(hangman) == word:
+                        print('''You guessed the word!\nYou survived!''')
+                    else:
+                        return guessword(count=7)
+                else:
+                    print("No such letter in the word")
+                    print("You are hanged!")
+            else:
+                print("No improvements")
+                print("You are hanged!")
+
+    guessword()
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/69/stages/378/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 7

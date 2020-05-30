@@ -231,6 +231,40 @@ files:
     if __name__ == '__main__':
         CoffeeMachineTest('hangman.hangman').run_tests()
   learner_created: false
+- name: hangman/hangman.py
+  visible: true
+  text: |-
+    import random
+    print("H A N G M A N\n")
+    word_list = ['python', 'java', 'kotlin', 'javascript']
+    word = random.choice(word_list)
+    hangman = ['-' for _ in range(0, len(word))]
+    for i in hangman:
+        print(i, end='')
+
+    def guessword():
+        count = 0
+        while count <= 7:
+            guess = input("\nInput a letter: ")
+            print()
+            if guess in word:
+                for i in range(0, len(word)):
+                    if guess == word[i]:
+                        hangman.pop(i)
+                        hangman.insert(i, guess)
+            else:
+                print("No such letter in the word\n")
+
+            for i in hangman:
+                print(i, end='')
+            if ''.join(hangman) == word:
+                print('''\nThanks for playing!\nWe'll see how well you did in the next stage''')
+            count += 1
+        else:
+            print('''\nThanks for playing!\nWe'll see how well you did in the next stage''')
+
+    guessword()
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/69/stages/377/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 6

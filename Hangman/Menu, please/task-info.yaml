@@ -293,6 +293,79 @@ files:
     if __name__ == '__main__':
         CoffeeMachineTest('hangman.hangman').run_tests()
   learner_created: false
+- name: hangman/hangman.py
+  visible: true
+  text: |-
+    import random
+    print("H A N G M A N\n")
+    word_list = ['python', 'java', 'kotlin', 'javascript']
+    word = random.choice(word_list)
+    hangman = ['-' for _ in range(0, len(word))]
+    repeat = []
+
+
+    def guessword(count= 0):
+        while count < 7:
+            print(''.join(hangman))
+            guess = input("Input a letter:")
+            if len(guess) > 1 or guess == '':
+                print("You should input a single letter\n")
+                return guessword(count=count)
+            if not guess.isascii() or not guess.islower():
+                print("It is not an ASCII lowercase letter\n")
+                return guessword(count=count)
+            if guess not in hangman:
+                if guess in word:
+                    for i in range(0, len(word)):
+                        if guess == word[i]:
+                            hangman.pop(i)
+                            hangman.insert(i, guess)
+                    if ''.join(hangman) == word:
+                        print('''You guessed the word {}!\nYou survived!'''.format(''.join(hangman)))
+                        break
+                    print()
+                else:
+                    if guess in repeat:
+                        print("You already typed this letter\n")
+                    else:
+                        count += 1
+                        repeat.append(guess)
+                        print("No such letter in the word\n")
+            else:
+                print("You already typed this letter\n")
+        else:
+            print(''.join(hangman))
+            guess = input("Input a letter:")
+            if len(guess) > 1 or guess == '':
+                print("You should input a single letter\n")
+                return guessword(count=count)
+            if not guess.isascii() or not guess.islower():
+                print("It is not an ASCII lowercase letter\n")
+                return guessword(count=count)
+            if guess not in hangman:
+                if guess in word:
+                    for i in range(0, len(word)):
+                        if guess == word[i]:
+                            hangman.pop(i)
+                            hangman.insert(i, guess)
+                    if ''.join(hangman) == word:
+                        print('''You guessed the word {}!\nYou survived!'''.format(''.join(hangman)))
+                    else:
+                        print()
+                        return guessword(count=7)
+                else:
+                    if guess in repeat:
+                        print("You already typed this letter\n")
+                        return guessword(count=count)
+                    else:
+                        print("No such letter in the word")
+                        print("You are hanged!")
+            else:
+                print("You already typed this letter\n")
+                return guessword(count=count)
+
+    guessword()
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/69/stages/379/implement
-status: Unchecked
+status: Solved
 record: -1
